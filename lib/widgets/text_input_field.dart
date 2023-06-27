@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class InputField extends StatefulWidget {
   InputField({
     super.key,
@@ -41,7 +42,9 @@ class _InputFieldState extends State<InputField> {
           suffixIcon: widget.showSuffixIcon
               ? IconButton(
                   onPressed: _showText,
-                  icon: const Icon(Icons.visibility_off),
+                  icon: const Icon(
+                    Icons.visibility_off,
+                  ),
                 )
               : null,
           hintText: widget.hintText,
@@ -50,8 +53,9 @@ class _InputFieldState extends State<InputField> {
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(color: Colors.grey),
           ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 2),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.deepPurple, width: 2),
           ),
         ),
       ),
