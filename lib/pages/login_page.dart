@@ -68,8 +68,9 @@ class _LoginPageState extends State<LoginPage> {
               // Email Input Field
               InputField(
                 hintText: "Email",
-                hideText: false,
+                obscureText: false,
                 controller: _emailController,
+                showSuffixIcon: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Enter Email";
@@ -87,8 +88,9 @@ class _LoginPageState extends State<LoginPage> {
               // Password Input Field
               InputField(
                 hintText: "Password",
-                hideText: true,
+                obscureText: true,
                 controller: _passwordController,
+                showSuffixIcon: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Enter Password";

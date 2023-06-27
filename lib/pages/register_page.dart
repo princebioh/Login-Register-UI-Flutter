@@ -69,8 +69,9 @@ class _RegisterPageState extends State<RegisterPage> {
               // First Name
               InputField(
                 hintText: "First Name",
-                hideText: false,
+                obscureText: false,
                 controller: _firstNameController,
+                showSuffixIcon: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter your first name";
@@ -82,8 +83,9 @@ class _RegisterPageState extends State<RegisterPage> {
               // Last Name
               InputField(
                 hintText: "Last Name",
-                hideText: false,
+                obscureText: false,
                 controller: _lastNameController,
+                showSuffixIcon: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter your last name";
@@ -95,8 +97,9 @@ class _RegisterPageState extends State<RegisterPage> {
               // Email Input Field
               InputField(
                 hintText: "Email",
-                hideText: false,
+                obscureText: false,
                 controller: _emailController,
+                showSuffixIcon: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter valid Email";
@@ -110,8 +113,9 @@ class _RegisterPageState extends State<RegisterPage> {
               // Password Input Field
               InputField(
                 hintText: "Password",
-                hideText: true,
+                obscureText: true,
                 controller: _passwordController,
+                showSuffixIcon: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please Enter Password";
@@ -123,8 +127,9 @@ class _RegisterPageState extends State<RegisterPage> {
               // Confirm Password
               InputField(
                 hintText: "Confirm Password",
-                hideText: true,
+                obscureText: true,
                 controller: _confirmPasswordController,
+                showSuffixIcon: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Enter Password Again";

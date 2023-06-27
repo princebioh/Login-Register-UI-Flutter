@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {
-  const InputField({
+  InputField({
     super.key,
     required this.controller,
-    required this.hideText,
+    required this.obscureText,
     required this.hintText,
+    required this.showSuffixIcon,
     this.validator,
   });
   final TextEditingController controller;
   final String hintText;
-  final bool hideText;
+  bool obscureText;
   final String? Function(String?)? validator;
+  final bool showSuffixIcon;
 
   @override
   State<InputField> createState() => _InputFieldState();
 }
 
 class _InputFieldState extends State<InputField> {
+  void _showText() {
+    setState(() {
+      widget.obscureText = !widget.obscureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,8 +36,14 @@ class _InputFieldState extends State<InputField> {
       child: TextFormField(
         controller: widget.controller,
         validator: widget.validator,
-        obscureText: widget.hideText,
+        obscureText: widget.obscureText,
         decoration: InputDecoration(
+          suffixIcon: widget.showSuffixIcon
+              ? IconButton(
+                  onPressed: _showText,
+                  icon: const Icon(Icons.visibility_off),
+                )
+              : null,
           hintText: widget.hintText,
           border: const OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(
