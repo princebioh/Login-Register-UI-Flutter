@@ -18,6 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -35,111 +36,149 @@ class _RegisterPageState extends State<RegisterPage> {
       backgroundColor: Colors.grey[300],
       body: SafeArea(
           child: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-
-            // Text Dispaly : Hello
-            const Text(
-              "Hello There!",
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-            ),
-
-            const SizedBox(
-              height: 15,
-            ),
-
-            // Text Dispaly : Welcome
-            const Text(
-              "Register below with your details ",
-              style: TextStyle(
-                fontSize: 20,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 50,
               ),
-            ),
 
-            const SizedBox(
-              height: 30,
-            ),
+              // Text Dispaly : Hello
+              const Text(
+                "Hello There!",
+                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+              ),
 
-            // First Name
-            InputField(
-              hintText: "First Name",
-              hideText: false,
-              controller: _firstNameController,
-            ),
+              const SizedBox(
+                height: 15,
+              ),
 
-            // Last Name
-            InputField(
-              hintText: "Last Name",
-              hideText: false,
-              controller: _lastNameController,
-            ),
-
-            // Email Input Field
-            InputField(
-              hintText: "Email",
-              hideText: false,
-              controller: _emailController,
-            ),
-
-            // Password Input Field
-            InputField(
-              hintText: "Password",
-              hideText: true,
-              controller: _passwordController,
-            ),
-
-            // Confirm Password
-            InputField(
-              hintText: "Confirm Password",
-              hideText: true,
-              controller: _confirmPasswordController,
-            ),
-
-            const SizedBox(
-              height: 30,
-            ),
-
-            // Sign In Button
-            SubmitButton(
-              text: "Register",
-              onTap: () {},
-            ),
-
-            const SizedBox(
-              height: 30,
-            ),
-
-            // Text : Not a member
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "Already a member?",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+              // Text Dispaly : Welcome
+              const Text(
+                "Register below with your details ",
+                style: TextStyle(
+                  fontSize: 20,
                 ),
-                const SizedBox(
-                  width: 8,
-                ),
-                InkWell(
-                  onTap: widget.changePage,
-                  child: const Text(
-                    "Login Here",
+              ),
+
+              const SizedBox(
+                height: 30,
+              ),
+
+              // First Name
+              InputField(
+                hintText: "First Name",
+                hideText: false,
+                controller: _firstNameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your first name";
+                  }
+                  return null;
+                },
+              ),
+
+              // Last Name
+              InputField(
+                hintText: "Last Name",
+                hideText: false,
+                controller: _lastNameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your last name";
+                  }
+                  return null;
+                },
+              ),
+
+              // Email Input Field
+              InputField(
+                hintText: "Email",
+                hideText: false,
+                controller: _emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter valid Email";
+                  } else if (!value.contains("@")) {
+                    return "Enter Valid Email";
+                  }
+                  return null;
+                },
+              ),
+
+              // Password Input Field
+              InputField(
+                hintText: "Password",
+                hideText: true,
+                controller: _passwordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please Enter Password";
+                  }
+                  return null;
+                },
+              ),
+
+              // Confirm Password
+              InputField(
+                hintText: "Confirm Password",
+                hideText: true,
+                controller: _confirmPasswordController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Enter Password Again";
+                  } else if (value != _passwordController.text) {
+                    return "Passwords do not match";
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(
+                height: 30,
+              ),
+
+              // Sign In Button
+              SubmitButton(
+                  text: "Register",
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {}
+                  }),
+
+              const SizedBox(
+                height: 30,
+              ),
+
+              // Text : Not a member
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Already a member?",
                     style: TextStyle(
-                      color: Colors.blue,
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  InkWell(
+                    onTap: widget.changePage,
+                    child: const Text(
+                      "Login Here",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       )),
     );
