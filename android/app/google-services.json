@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "646216687861",
+    "project_id": "login-register-ui-b651b",
+    "storage_bucket": "login-register-ui-b651b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646216687861:android:056d5e34b617dfd29ea5bc",
+        "android_client_info": {
+          "package_name": "com.example.login_register_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646216687861-qm8djthu24cri7gm9j32tqt8v3nn5bcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9rw1rpwjXqhqDmPLw6N4kloaJQrmOfxY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "646216687861-qm8djthu24cri7gm9j32tqt8v3nn5bcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
