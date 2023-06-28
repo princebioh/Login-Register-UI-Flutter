@@ -28,6 +28,16 @@ class EmailAuthenticate {
     );
   }
 
+  // Forgot Password Method
+  Future<void> forgotPassword({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
   // Create Method to LogOut
   Future<void> logOut() async {
     _auth.signOut();

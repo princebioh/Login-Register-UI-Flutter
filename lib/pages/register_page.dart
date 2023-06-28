@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_register_ui/services/authentication/email_auth.dart';
+import 'package:login_register_ui/services/database/db.dart';
 import '../widgets/submit_button.dart';
 import '../widgets/text_input_field.dart';
 
@@ -151,11 +152,19 @@ class _RegisterPageState extends State<RegisterPage> {
                 // Sign In Button
                 SubmitButton(
                     text: "Register",
-                    onTap: () {
+                    onTap: () async {
                       if (_formKey.currentState!.validate()) {
-                        EmailAuthenticate().emailSignUp(
+                        // Authenticate User
+                        await EmailAuthenticate().emailSignUp(
                             email: _emailController.text,
                             password: _passwordController.text);
+
+                        // Add User Details to Firestore
+                        await CloudFirestore().addUserDetails(
+                          firstName: _firstNameController.text,
+                          lastname: _lastNameController.text,
+                          email: _emailController.text,
+                        );
                       }
                     }),
 
